@@ -14,26 +14,8 @@
              ]).
 
 %% Public API
-ping(N) ->
-	W = N,
-	RingKey = {<<"ping">>, term_to_binary(os:timestamp())},
-    {ok, ReqID} = coordinated_kv_opfsm:op(ping, RingKey, N, W),
-    wait_for_reqid(ReqID, 5000).
+ping(N) -> todo.
 
-store(Key, Data, N, W) when N >= W ->
-    RingKey = {<<"store">>, term_to_binary(Key)},
-    {ok, ReqID} = coordinated_kv_opfsm:op({store, Key, Data}, RingKey, N, W),
-    wait_for_reqid(ReqID, 5000).
+store(Key, Data, N, W) when N >= W -> todo.
 
-fetch(Key, N, W) when N >= W ->
-    RingKey = {<<"store">>, term_to_binary(Key)},
-    {ok, ReqID} = coordinated_kv_opfsm:op({fetch, Key}, RingKey, N, W),
-    wait_for_reqid(ReqID, 5000).
-
-wait_for_reqid(ReqID, Timeout) ->
-    receive
-        {ReqID, Value} ->
-            {ok, Value}
-    after Timeout ->
-        {error, timeout}
-    end.
+fetch(Key, N, W) when N >= W -> todo.

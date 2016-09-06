@@ -22,7 +22,8 @@ or W or R to respond.
 
 ## Exercise
 
-Study the op FSM and the new service API implementations. If you're building up
-YakDB, bring this code into YakDB.
+Study the op FSM and the vnode, then implement the Service code to use these coordinators.
 
-Implement a coordinated "ping" request.
+If you're building up YakDB, bring the FSM code into YakDB.
+
+See git tag coordinated-kv-complete if you'd like a reference implementation.
