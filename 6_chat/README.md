@@ -59,8 +59,6 @@ many users as you like (or script up something to test with):
 * `zap_core_service:say(channel, msg)` / `ZapCore.Service.say(room, msg)` 
     * broadcast message to all clients subscribed to a given room
 
-* if you have time, consider part requests/client disconnects
-
 ## Consider:
 
 * Does this application need an op coordinator? Perhaps only for some operations (joins vs broadcasts)?
@@ -184,5 +182,3 @@ user's answer differently based on their current state.
 * what's the best sharding key for this exercise? should all "hotel" interactions
   happen on the same vnode? Hotels in bilbao? Which data should be a part of
   the chat service, and which data should live in an external DB?
-
-
