@@ -37,14 +37,9 @@ handle_command(ping, _Sender, State) ->
 %% Store some data
 handle_command({store, Key, Data}, _Sender, State) ->
     Res = ets:insert(State#state.db, {Key, Data}),
-    {reply, Res, State};
+    {reply, Res, State}.
 
-%% Fetch some data
-handle_command({fetch, Key}, _Sender, State) ->
-    case ets:lookup(State#state.db, Key) of
-      [] -> {reply, not_found, State};
-      [{Key, Data}] -> {reply, {Key, Data}, State}
-    end.
+%% TODO Fetch some data
 
 handle_handoff_command(_Message, _Sender, State) ->
     {noreply, State}.

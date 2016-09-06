@@ -4,7 +4,7 @@
 -export([
          ping/0,
          store/2,
-         fetch/1
+         %% TODO fetch/1
         ]).
 
 -ignore_xref([
@@ -34,8 +34,5 @@ store(Key, Data) ->
     riak_core_vnode_master:sync_spawn_command(IndexVnode, {store, Key, Data}, silly_kv_vnode_master).
 
 %% @doc Fetch some previously stored erlang terms from the ring
-fetch(Key) ->
-    DocIdx = riak_core_util:chash_key({<<"store">>, term_to_binary(Key)}),
-    PrefList = riak_core_apl:get_primary_apl(DocIdx, 1, silly_kv_service),
-    [{IndexVnode, _Type}] = PrefList,
-    riak_core_vnode_master:sync_spawn_command(IndexVnode, {fetch, Key}, silly_kv_vnode_master).
+%% TODO
+

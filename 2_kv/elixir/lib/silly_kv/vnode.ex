@@ -20,13 +20,7 @@ defmodule SillyKV.Vnode do
     {:reply, result, state}
   end
 
-  # fetch some data
-  def handle_command({:fetch, key}, _sender, %{db: db} = state) do
-    case :ets.lookup(db, key) do
-      [] -> {:reply, :not_found, state}
-      [{key, data}] -> {:reply, {key, data}, state}
-    end
-  end
+  # TODO fetch some data
 
   def handle_handoff_command(_fold_req, _sender, state) do
     {:noreply, state}

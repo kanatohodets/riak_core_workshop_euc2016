@@ -17,12 +17,6 @@ defmodule SillyKV.Service do
   end
 
   def fetch(key) do
-    # hash our key
-    doc_idx = :riak_core_util.chash_key({"store", :erlang.term_to_binary(key)})
-    # fetch list of vnodes that service that part of the hash ring
-    pref_list = :riak_core_apl.get_primary_apl(doc_idx, 1, SillyKV.Service)
-    [{index_vnode, _type}] = pref_list
-    # get that data!
-    :riak_core_vnode_master.sync_spawn_command(index_vnode, {:fetch, key}, SillyKV.Vnode_master)
+    # TODO
   end
 end
