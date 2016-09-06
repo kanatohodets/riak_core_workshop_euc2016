@@ -12,8 +12,6 @@
 }).
 
 init(_, Req, _Opts) ->
-    io:fwrite("OMG INIT INIT INIT ~p", [Req]),
-    io:fwrite("wtf jsx encode?? ~p", [jsx:encode(#{foo => "bar"})]),
     {Method, Req1} = method(Req),
     {Key, Req2} = cowboy_req:binding(key, Req1),
     {N, Req3} = cowboy_req:qs_val(<<"n">>, Req2),
