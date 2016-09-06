@@ -13,9 +13,9 @@ defmodule ZapCore.Service do
     :ok
   end
 
-  def say(room, client) do
+  def say(room, msg) do
     ring_key = {"chat", room}
-    {:ok, req_id } = ZapCore.OpFSM.op({:say, room, client}, ring_key, 1, 1)
+    {:ok, req_id } = ZapCore.OpFSM.op({:say, room, msg}, ring_key, 1, 1)
     {:ok, res} = wait_for_reqid(req_id, 5000)
     :ok
   end
