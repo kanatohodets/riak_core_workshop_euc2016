@@ -12,17 +12,5 @@ defmodule Kvapi.StoreController do
     render conn, store: result
   end
 
-  def fetch(conn, %{"key" => key, "n" => n, "r" => r}=params) do
-    n = String.to_integer(n)
-    r = String.to_integer(r)
-    case HandoffKV.Service.fetch(key, n, r) do
-      [] ->
-        render conn, fetch: :not_found
-
-      data ->
-        cleaned = for {key, value} <- data, do: %{key => value}
-        render conn, fetch: cleaned
-
-    end
-  end
+  #TODO fetch
 end

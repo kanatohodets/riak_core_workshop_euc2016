@@ -6,4 +6,9 @@ up a Riak Core app to a HTTP server or web application.
 
 ## Exercise
 
-Add a route to handle "fetch".
+(If you're building up YakDB, try not to get stuck in the rabbit hole of tacking
+HTTP into your app: borrow liberally from the reference implementation)
+
+* Add a route to handle "fetch".
+
+See git tag http-kv-complete if you'd like a reference.

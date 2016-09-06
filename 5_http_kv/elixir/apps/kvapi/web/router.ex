@@ -8,6 +8,6 @@ defmodule Kvapi.Router do
   scope "/api", Kvapi do
     pipe_through :api
     put "/store/:key", StoreController, :store
-    get "/store/:key", StoreController, :fetch
+    # TODO fetch
   end
 end

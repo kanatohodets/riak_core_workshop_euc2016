@@ -19,16 +19,7 @@ init(_, Req, _Opts) ->
     io:fwrite("got an N val: ~p", [N1]),
     {ok, Req3, #state{method=Method, key=Key, n=N1}}.
 
-handle(Req, State=#state{method=get, key=Key, n=N}) ->
-    {R, Req1} = cowboy_req:qs_val(<<"r">>, Req),
-    R1 = binary_to_int(R),
-
-    io:fwrite("fetching ~p with N: ~p and R ~p", [Key, N, R1]),
-    Res = handoff_kv_service:fetch(Key, N, R1),
-    Encoded = jsx:encode(#{data => Res}),
-
-    {ok, Req2} = cowboy_req:reply(200, json_header(), Encoded, Req1),
-    {ok, Req2, State};
+%% TODO: handle fetch
 
 handle(Req, State=#state{method=put, key=Key, n=N}) ->
     {W, Req1} = cowboy_req:qs_val(<<"w">>, Req),
