@@ -1,4 +1,4 @@
-# YakDB
+# Building a cluster
 
 Sketch of a `riak_core` application in Erlang.
 
@@ -9,13 +9,21 @@ To run:
 
     make devrel1
     make dev1-console
-    erl>yak_db_service:ping().
+    erl> riak_core_console:member_status([]).
 
-If you want a cluster, compile and run another profile:
+To build a cluster, compile and run another profile:
 
     make devrel2
     make dev2-console
-    
-Then join it to the cluster:
 
-    erl>riak_core:join('yak_db1@127.0.0.1'). 
+Then, in the second console:
+
+    erl>riak_core:join('yak_db1@127.0.0.1').
+    erl>riak_core_console:member_status([]).
+
+Now you have a cluster!
+
+If you want to see transitions back, try:
+
+    erl>riak_core:leave().
+    

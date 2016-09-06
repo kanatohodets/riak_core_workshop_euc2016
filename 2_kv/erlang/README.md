@@ -1,16 +1,6 @@
-# SimpleHash
+# `silly_kv`
 
-Sketch of a `riak_core` application in Erlang.
+This repo has had 'fetch' removed from `silly_kv_service` and the corresponding
+logic in `silly_kv_vnode`. Try implementing it.
 
-First demo app for "Stateful Services with Riak Core". See README one level up
-for details about the exercise.
-
-To run:
-
-    make release
-    make console
-
-If you want a cluster, start up the other nodes, and then ask this one to join
-one of the others (where '$ip' is substituted for the real IP of that node):
-
-    erl>riak_core:join('dev_b@127.0.0.1'). 
+If you'd like to see the reference implementation, check out the 'silly-kv-complete' git tag.
