@@ -35,21 +35,8 @@ init([Partition]) ->
 handle_command({ReqID, ping}, _Sender, State=#state{partition=Partition}) ->
     {reply, {ReqID, {pong, Partition}}, State};
 
-%% join a room
-handle_command({ReqID, {join, Room, Client}}, _Sender, State=#state{db=Db}) ->
-    lager:info("join ~p to room ~p", [Client, Room]),
-    ets:insert(Db, {Room, Client}),
-    {reply, {ReqID, ok}, State};
-
-%% broadcast
-handle_command({ReqID, {say, Room, Msg}}, _Sender, State=#state{db=Db}) ->
-    Clients = ets:match(Db, {Room, '$1'}),
-    lager:info("this is my list of clients ~p", [Clients]),
-    lists:foreach(fun ([Client]) -> 
-        lager:info("sending message to client! ~p", [Client]),
-        Client ! Msg 
-    end, Clients),
-    {reply, {ReqID, ok}, State}.
+%% TODO: join a room
+%% TODO: broadcast
 
 handle_handoff_command(?FOLD_REQ{foldfun=VisitFun, acc0=Acc0}, _Sender, State=#state{db=Db, partition=Partition}) ->
     lager:info("~p received handoff command for vnode ~p", [node(), Partition]),

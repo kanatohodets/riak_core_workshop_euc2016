@@ -20,20 +20,9 @@ defmodule ZapCore.Vnode do
     {:reply, {req_id, {:pong, partition}}, state}
   end
 
-  def handle_command({req_id, {:join, room, client}}, _sender, %{db: db} = state) do
-    Logger.warn("join #{inspect client} to #{inspect room}")
-    :ets.insert(db, {room, client})
-    {:reply, {req_id, :ok}, state}
-  end
+  # TODO: handle_command "join"
 
-  def handle_command({req_id, {:say, room, msg}}, _sender, %{db: db} = state) do
-    Logger.warn("broadcast #{inspect msg} to #{inspect room}")
-
-    :ets.match(db, {room, :"$1"}) 
-      |> Enum.each fn([pid]) -> send(pid, "#{room} - #{msg}") end
-
-    {:reply, {req_id, :ok}, state}
-  end
+  # TODO: handle_command "say"
 
   def handle_handoff_command(riak_core_fold_req_v2(foldfun: visit_fun, acc0: acc0)=_fold_req, _sender, %{db: db}=state) do
     fold_fn = fn(object, acc_in) ->

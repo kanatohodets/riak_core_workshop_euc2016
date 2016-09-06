@@ -8,6 +8,9 @@ This service will be... a chat app!
 
 (...I'm sorry, it was either that or tic-tac-toe)
 
+YakDB followers, at this point I suggest setting YakDB aside for a fresh start
+in Zap Chat: we're not in KV store land anymore.
+
 # Stage 1 - basic chat, description
 The frontend is a simple TCP server. The client is telnet or netcat. A client
 connects like this:
@@ -58,6 +61,8 @@ many users as you like (or script up something to test with):
       further messages in this room. if you like, add a "* user foo has joined <room>" message
 * `zap_core_service:say(channel, msg)` / `ZapCore.Service.say(room, msg)` 
     * broadcast message to all clients subscribed to a given room
+
+See git tag chat-starting-point if you'd like a reference.
 
 ## Consider:
 
