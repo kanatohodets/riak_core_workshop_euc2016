@@ -6,9 +6,9 @@ defmodule CoordinatedKV.OpFSM do
   end
 
   def op(op, key, n, w) do
-	req_id = req_id()
-	CoordinatedKV.OpFSM.Sup.start_op_fsm([req_id, self(), op, key, n, w])
-	{:ok, req_id}
+  	req_id = req_id()
+  	CoordinatedKV.OpFSM.Sup.start_op_fsm([req_id, self(), op, key, n, w])
+  	{:ok, req_id}
   end
 
   # FSM callbacks
