@@ -9,6 +9,6 @@ defmodule SimpleHash.Service do
     [{index_vnode, _type}] = pref_list
     # then actually send the request to that vnode
     # (riak core appends "_master" to SimpleHash.Vnode for a process name, hence the weirdness)
-    :riak_core_vnode_master.sync_spawn_command(index_node, :ping, SimpleHash.Vnode_master)
+    :riak_core_vnode_master.sync_spawn_command(index_vnode, :ping, SimpleHash.Vnode_master)
   end
 end
