@@ -17,6 +17,7 @@ For example:
 
 Before joining, on node A:
 
+    > riak_core_console:member_status([]).
     > handoff_kv_service:store(foo, {bar, 42}, 3, 2).
     > handoff_kv_service:ping(3).
     %% look at which vnodes handle this command (they log)
@@ -24,5 +25,6 @@ Before joining, on node A:
 Now, start node B, and join it to Node A:
 
     > riak_core:join('handoff_kv1@127.0.0.1').
+    > riak_core_console:member_status([]).
     %% now, start running fetches to see who handles the commands:
     > handoff_kv_service:fetch(foo, 3, 1). %% repeat periodically as handoff progresses
